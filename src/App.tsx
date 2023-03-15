@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { ButtonTypes, AlertTypes } from "./helpers/Enums";
+
+import Alert from "./components/Alert";
+import ListGroup from "./components/ListGroup";
+
+import Button from "./components/Button/";
+import { BsFillArrowDownSquareFill } from "react-icons/bs";
+import styles from "./components/Button/Button.module.css";
+
+import Form from "./components/Form";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const items = ["New York", "Chicago", "Paris", "London", "Kansas City"];
+  const handleSelectItem = (item: string) => {
+    console.log(item);
+  };
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <ListGroup
+        items={items}
+        heading={"List Group Component"}
+        onSelectItem={handleSelectItem}
+      ></ListGroup>
+      <div className="mb-3">
+        <hr />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <Alert type={AlertTypes.Success}>Success Alert</Alert>
+      <div className="mb-3">
+        <hr />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Form></Form>
+      <div className="mb-3">
+        <hr />
+      </div>
+      <Button type={ButtonTypes.Secondary}>
+        <span className={styles.icon}>
+          <BsFillArrowDownSquareFill></BsFillArrowDownSquareFill>
+        </span>
+        <span className="buttonText">ICON BUTTON</span>
+      </Button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
